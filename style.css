@@ -1,0 +1,79 @@
+/* Reset and Font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    /* Her Main Fav: Soft Yellow Background */
+    background-color: #fff9c4; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Prevents scrollbars when button moves */
+}
+
+.container {
+    text-align: center;
+    position: relative;
+}
+
+/* Her 3rd Fav: Purple for text (Good contrast) */
+h1 {
+    font-size: 2.5rem;
+    color: #5e35b1; 
+    margin-bottom: 10px;
+}
+
+#sub-text {
+    font-size: 1.2rem;
+    color: #7e57c2;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.gif-container img {
+    width: 200px; /* Adjust size as needed */
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-group {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Space between buttons */
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Her 2nd Fav: Blue for the YES button */
+#yesBtn {
+    background-color: #29b6f6; 
+    color: white;
+}
+
+#yesBtn:hover {
+    background-color: #039be5;
+    transform: scale(1.05);
+}
+
+/* Neutral/Red for NO button */
+#noBtn {
+    background-color: #ef5350;
+    color: white;
+}
