@@ -1,3 +1,4 @@
+/* Reset and Font */
 * {
     margin: 0;
     padding: 0;
@@ -6,47 +7,110 @@
 
 body {
     font-family: 'Nunito', sans-serif;
-    background-color: #fff9c4; /* Soft Yellow */
+    /* Fantasy Golden Hour Gradient: Yellow center, Reddish edges */
+    background: radial-gradient(circle at center, #fff59d 0%, #fbc02d 60%, #ff8a80 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     overflow: hidden;
-    background: radial-gradient(circle, #fffde7 0%, #fff9c4 100%);
+    position: relative;
 }
 
+/* --- Fantasy Background Elements --- */
+.fantasy-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.6;
+    animation: float 10s infinite ease-in-out;
+}
+
+/* Red/Pinkish Orb */
+.orb-1 {
+    width: 300px;
+    height: 300px;
+    background: #ffcdd2;
+    top: -50px;
+    left: -50px;
+    animation-delay: 0s;
+}
+
+/* Deep Yellow Orb */
+.orb-2 {
+    width: 400px;
+    height: 400px;
+    background: #fff176;
+    bottom: -100px;
+    right: -100px;
+    animation-delay: 2s;
+}
+
+/* Floating Red Heart Hint */
+.orb-3 {
+    width: 200px;
+    height: 200px;
+    background: #ef9a9a;
+    top: 40%;
+    left: 80%;
+    animation-delay: 5s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(30px, 50px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* --- Main Card --- */
 .container {
-    text-align: center;
+    position: relative;
     z-index: 10;
-    background: rgba(255, 255, 255, 0.4);
-    padding: 40px;
+    text-align: center;
+    /* Glassmorphism Effect */
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 50px;
     border-radius: 30px;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    border: 2px solid rgba(255, 255, 255, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    max-width: 90%;
 }
 
+/* Typography */
 h1 {
-    font-size: 2.5rem;
-    color: #5e35b1; /* Purple */
+    font-family: 'Great Vibes', cursive; /* Fantasy Font */
+    font-size: 3.5rem;
+    color: #d32f2f; /* Deep Valentine Red */
     margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
 }
 
 #sub-text {
-    font-size: 1.1rem;
-    color: #7e57c2;
+    font-size: 1.2rem;
+    color: #5d4037; /* Warm brown for contrast */
     margin-bottom: 30px;
-    font-weight: 700;
+    font-style: italic;
 }
 
 .gif-container img {
     width: 250px;
     height: 250px;
-    object-fit: contain; /* Keeps GIFs from stretching */
+    object-fit: contain;
     border-radius: 20px;
+    /* Soft glow around the image */
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
     margin-bottom: 20px;
-    transition: transform 0.3s ease;
 }
 
 .btn-group {
@@ -54,32 +118,33 @@ h1 {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    min-height: 150px; /* Space for the growing button */
+    min-height: 100px;
 }
 
 button {
-    padding: 15px 35px;
+    padding: 15px 40px;
     font-size: 1.2rem;
     font-weight: bold;
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    font-family: 'Nunito', sans-serif;
 }
 
 #yesBtn {
-    background-color: #29b6f6; /* Blue */
+    background: linear-gradient(45deg, #29b6f6, #0288d1);
     color: white;
+    box-shadow: 0 5px 15px rgba(3, 169, 244, 0.4);
 }
 
 #yesBtn:hover {
-    background-color: #039be5;
     transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(3, 169, 244, 0.6);
 }
 
 #noBtn {
-    background-color: #ef5350;
+    background: linear-gradient(45deg, #ef5350, #c62828);
     color: white;
-    z-index: 999;
+    box-shadow: 0 5px 15px rgba(239, 83, 80, 0.4);
 }
