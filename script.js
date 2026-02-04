@@ -7,25 +7,23 @@ const mainGif = document.getElementById('mainGif');
 let yesFontSize = 1.2;
 let yesPadding = 15;
 
-// List of your secondary GIFs to cycle through when "No" is hovered
+// Your GIFs
 const extraGifs = ['good-morning.gif', 'dancing-cat-cat.gif', 'cat-jump.gif'];
 let gifIndex = 0;
 
 function moveNoButton() {
-    // 1. Better Bounds Calculation
-    const padding = 20; // Keep it at least 20px from edges
+    const padding = 30; // Safer padding
     const maxWidth = window.innerWidth - noBtn.offsetWidth - padding;
     const maxHeight = window.innerHeight - noBtn.offsetHeight - padding;
 
-    // Ensure it doesn't go negative
     const randomX = Math.max(padding, Math.floor(Math.random() * maxWidth));
     const randomY = Math.max(padding, Math.floor(Math.random() * maxHeight));
 
-    noBtn.style.position = 'fixed'; // Fixed is safer for "out of screen" issues
+    noBtn.style.position = 'fixed'; // Use fixed to ensure it stays in view relative to viewport
     noBtn.style.left = randomX + 'px';
     noBtn.style.top = randomY + 'px';
 
-    // 2. Change GIF occasionally when they try to click "No"
+    // Cycle GIFs
     gifIndex = (gifIndex + 1) % extraGifs.length;
     mainGif.src = extraGifs[gifIndex];
 
@@ -33,15 +31,38 @@ function moveNoButton() {
 }
 
 function growYesButton() {
-    yesFontSize += 0.3; 
-    yesPadding += 4;    
+    yesFontSize += 0.4;
+    yesPadding += 5;
     yesBtn.style.fontSize = `${yesFontSize}rem`;
     yesBtn.style.padding = `${yesPadding}px ${yesPadding * 2}px`;
 }
 
+// Logic to trigger confetti
+function triggerConfetti() {
+    // Basic cannon from left
+    confetti({
+        origin: { x: 0, y: 0.8 },
+        angle: 60,
+        spread: 55,
+        startVelocity: 60,
+        scalar: 1.2,
+        colors: ['#ff0000', '#ffa500', '#ffff00'] // Red, Orange, Yellow
+    });
+
+    // Basic cannon from right
+    confetti({
+        origin: { x: 1, y: 0.8 },
+        angle: 120,
+        spread: 55,
+        startVelocity: 60,
+        scalar: 1.2,
+        colors: ['#ff0000', '#ffa500', '#ffff00']
+    });
+}
+
 noBtn.addEventListener('mouseover', moveNoButton);
 noBtn.addEventListener('touchstart', (e) => {
-    e.preventDefault(); // Prevents flickering on mobile
+    e.preventDefault();
     moveNoButton();
 });
 
@@ -50,10 +71,39 @@ yesBtn.addEventListener('click', () => {
     subText.style.display = 'none';
     
     question.innerHTML = "YAY! See you on the 14th! 😻";
-    question.style.fontFamily = "'Pacifico', cursive";
     question.style.fontSize = "3.5rem";
-
-    // Final "Winning" GIF
+    
+    // Final GIF
     mainGif.src = "cat-jump.gif"; 
+    
+    // Hide Yes button
     yesBtn.style.display = 'none';
+
+    // Trigger Confetti!
+    triggerConfetti();
+    
+    // Optional: Keep firing confetti for a few seconds
+    let duration = 3 * 1000;
+    let end = Date.now() + duration;
+
+    (function frame() {
+        confetti({
+            particleCount: 3,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 },
+            colors: ['#ff0000', '#ffa500']
+        });
+        confetti({
+            particleCount: 3,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 },
+            colors: ['#ff0000', '#ffa500']
+        });
+    
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    }());
 });
