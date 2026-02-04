@@ -71,6 +71,10 @@ yesBtn.addEventListener('click', () => {
     subText.style.display = 'none';
     
     question.innerHTML = "YAY! See you on the 14th! 😻";
+    
+    // CHANGED: Use Nunito (or just remove this line to keep the CSS font)
+    question.style.fontFamily = "'Nunito', sans-serif"; 
+    
     question.style.fontSize = "3.5rem";
     
     // Final GIF
